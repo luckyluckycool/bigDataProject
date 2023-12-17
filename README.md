@@ -15,13 +15,15 @@
     2. Create your own branch from master (e.x. yuriy_gonsor_branch)
 3. Docker
    * Install Docker
-   * Build Docker image from Dockerfile with command 
-```bash
-$ docker build -t sparkapp .
+   * Build Docker image from Dockerfile and run container with command
+```shell
+docker build -t sparkapp . | docker run --name sparkapp sparkapp
 ```
-   * Run Docker container with command
-```bash
-$ docker run sparkapp 
-   ```
+
+* After running, delete the container and image with command
+```shell
+docker rm sparkapp | docker rmi sparkapp
+```
+
 * Run these command every time you changed code (you can do it from this README)
 
