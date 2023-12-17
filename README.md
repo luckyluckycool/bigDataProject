@@ -11,19 +11,33 @@
 
 1. Install required version of interpreter/libraries
 2. VCS:
-    1. Clone repo
-    2. Create your own branch from master (e.x. yuriy_gonsor_branch)
+   - Clone repo
+   - Create your own branch from master (e.x. yuriy_gonsor_branch)
+   - Specify paths to your datasets in [config.py](config.py)
 3. Docker
-   * Install Docker
-   * Build Docker image from Dockerfile and run container with command
+   - Install Docker
+   - Build Docker image with command (run this command after the code changes)
+
 ```shell
-docker build -t sparkapp . | docker run --name sparkapp sparkapp
+docker-compose up -d --no-deps --build
 ```
 
-* After running, delete the container and image with command
+* * Start container and watch logs in terminal
+
 ```shell
-docker rm sparkapp | docker rmi sparkapp
+docker start sparkapp-sparkapp-1 -i
 ```
 
-* Run these command every time you changed code (you can do it from this README)
+* To delete unused images
+
+```shell
+docker image prune -f
+```
+
+* To shutdown the docker run next command (it will delete everything)
+```shell
+docker-compose down
+```
+
+* P.S. it is better for you to run these commands from README
 

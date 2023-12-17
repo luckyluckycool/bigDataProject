@@ -1,1 +1,2 @@
-path_to_dataset = ''
+trip_dataset = 'dataset/trip_data'
+fare_dataset = 'dataset/trip_fare'

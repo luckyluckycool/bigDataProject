@@ -1,0 +1,11 @@
+version: "3.9"
+name: sparkapp
+services:
+  sparkapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./dataset:/dataset"
+volumes:
+  dataset:
