@@ -34,5 +34,10 @@ docker start sparkapp-sparkapp-1 -i
 docker image prune -f
 ```
 
+* To shutdown the docker run next command (it will delete everything)
+```shell
+docker-compose down
+```
+
 * P.S. it is better for you to run these commands from README
 
