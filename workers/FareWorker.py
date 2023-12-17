@@ -9,7 +9,7 @@ class FareWorker:
         t.StructField("medallion", t.StringType(), False),
         t.StructField("hack_license", t.StringType(), False),
         t.StructField("vendor_id", t.StringType(), False),
-        t.StructField("pickup_datetime", t.DateType(), False),
+        t.StructField("pickup_datetime", t.TimestampType(), False),
         t.StructField("payment_type", t.StringType(), False),
         t.StructField("fare_amount", t.FloatType(), False),
         t.StructField("surcharge", t.FloatType(), False),
@@ -22,5 +22,8 @@ class FareWorker:
     def __init__(self, spark: SparkSession):
         self.df = spark.read.csv(config.fare_dataset, self.fare_schema, header=True, nullValue='null')
 
-    def show_df(self):
+    def show(self):
         self.df.show()
+
+    def count(self) -> int:
+        self.df.count()
