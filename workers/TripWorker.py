@@ -9,10 +9,10 @@ class TripWorker:
         t.StructField("medallion", t.StringType(), False),
         t.StructField("hack_license", t.StringType(), False),
         t.StructField("vendor_id", t.StringType(), False),
-        t.StructField("rate_code", t.BooleanType(), False),
-        t.StructField("store_and_fwd_flag", t.StringType(), False),
-        t.StructField("pickup_datetime", t.DateType(), False),
-        t.StructField("dropoff_datetime", t.DateType(), False),
+        t.StructField("rate_code", t.IntegerType(), False),
+        t.StructField("store_and_fwd_flag", t.BooleanType(), False),
+        t.StructField("pickup_datetime", t.TimestampType(), False),
+        t.StructField("dropoff_datetime", t.TimestampType(), False),
         t.StructField("passenger_count", t.IntegerType(), False),
         t.StructField("trip_time_in_secs", t.IntegerType(), False),
         t.StructField("trip_distance", t.FloatType(), False),
@@ -24,9 +24,12 @@ class TripWorker:
 
     def __init__(self, spark: SparkSession):
         self.df = spark.read.csv(config.trip_dataset, self.trip_schema, header=True, nullValue='null')
+        self.df = self.df
 
-    def show_df(self):
+    def show(self):
         self.df.show()
 
+    def count(self) -> int:
+        return self.df.count()
 
 

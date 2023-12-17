@@ -7,5 +7,6 @@ services:
       dockerfile: Dockerfile
     volumes:
       - "./dataset:/dataset"
+    command: tail -f /dev/null
 volumes:
   dataset:
