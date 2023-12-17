@@ -1,9 +1,8 @@
 from pyspark.sql import SparkSession
 from pyspark import SparkConf
 from pyspark.sql import DataFrame
-import pyspark.sql.functions as f
 import pyspark.sql.types as t
-import config
+from workers import FareWorker, TripWorker
 
 
 def init_spark() -> SparkSession:
@@ -21,12 +20,9 @@ def create_df_example(spark: SparkSession) -> DataFrame:
     return spark.createDataFrame(data, schema)
 
 
-def create_dataframe(spark: SparkSession) -> DataFrame:
-    df = spark.read.csv(config.path_to_dataset, header=True, nullValue='null')
-    return df
+spark = init_spark()
+# df = create_df_example(spark)
 
+tripWorker = TripWorker.TripWorker(spark)
+tripWorker.show_df()
 
-if __name__ == '__main__':
-    spark = init_spark()
-    df = create_df_example(spark)
-    df.show()
