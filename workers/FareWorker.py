@@ -32,7 +32,8 @@ class FareWorker:
 
     def __init__(self, spark: SparkSession):
         self.df = (spark.read
-                   .csv(config.fare_dataset, self.fare_schema, header=True, nullValue='null')
+                   .csv(config.fare_dataset, self.fare_schema, header=True, ignoreTrailingWhiteSpace=True,
+                        ignoreLeadingWhiteSpace=True, nullValue='null')
                    .filter(self.preprocess_filter_condition))
 
     def show(self):

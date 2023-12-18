@@ -31,7 +31,8 @@ class TripWorker:
 
     def __init__(self, spark: SparkSession):
         self.df: DataFrame = (spark.read
-                              .csv(config.trip_dataset, self.trip_schema, header=True, nullValue='null')
+                              .csv(config.trip_dataset, self.trip_schema, header=True, ignoreLeadingWhiteSpace=True,
+                                   ignoreTrailingWhiteSpace=True, nullValue='null')
                               .filter(self.preprocess_filter_condition))
 
     def show(self, n=None):
