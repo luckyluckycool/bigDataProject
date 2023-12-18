@@ -1177,6 +1177,12 @@ tripWorker.df.select(passenger_count).distinct().show()
 
 ================================================================================================================================================================================================================================================
 
+preprocess_filter_condition = ((col(passenger_count) > 0) & (col(passenger_count) <= 9)
+                                & (col(trip_distance) > 0) & (col(trip_distance) < 70_000)
+                                & (col(trip_time_in_secs) > 0) & (col(trip_time_in_secs) < 60_000))
+
+================================================================================================================================================================================================================================================
+
 #After preprocess
 num_cols = [f.name for f in tripWorker.df.schema.fields if isinstance(f.dataType, t.NumericType)]
 tripWorker.df.describe(num_cols).show()
