@@ -1,13 +1,9 @@
-import math
-
 from pyspark.sql import SparkSession, Window
 import pyspark.sql.types as t
-from pyspark.sql.functions import col, avg, count, sum, month, udf
-from workers.FareWorker import FareWorker
+from pyspark.sql.functions import col, avg, month
 from workers.Aliases import *
 import config
 from pyspark.sql import DataFrame
-from geopy.distance import geodesic
 
 
 class TripWorker:

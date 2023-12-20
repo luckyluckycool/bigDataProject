@@ -1,7 +1,6 @@
-from pyspark.sql import SparkSession, DataFrame, Window
+from pyspark.sql import SparkSession, Window
 import pyspark.sql.types as t
-from pyspark.sql.functions import col, avg, min, max, date_format, sum, month, year
-
+from pyspark.sql.functions import col, avg, min, max, sum, month
 from workers.Aliases import *
 import config
 
