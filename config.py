@@ -1,8 +1,8 @@
 from pyspark.sql import DataFrame, SparkSession
-from pyspark import SparkConf
 
 trip_dataset = 'dataset/trip_data'
-fare_dataset = 'dataset/trip_fare'
+fare_dataset = 'dataset/fare_data'
+full_dataset = 'dataset/joined_df.parquet'
 output_folder = 'output'
 
 
@@ -14,5 +14,6 @@ def init_spark() -> SparkSession:
     return (SparkSession.builder
             .master("local")
             .appName("Python")
-            .config(conf=SparkConf())
+            .config("spark.driver.memory", "4g")
+            .config("spark.executor.memory", "6g")
             .getOrCreate())

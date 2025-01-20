@@ -1,16 +1,14 @@
-from pyspark.sql import SparkSession
-from pyspark import SparkConf
-from pyspark.sql import DataFrame
+import os
+
 import pyspark.sql.types as t
-from workers import FareWorker, TripWorker
+from pyspark.sql import DataFrame
+from pyspark.sql import SparkSession
 
+from config import init_spark
+from tables.TripTable import TripTable
 
-def init_spark() -> SparkSession:
-    return (SparkSession.builder
-            .master("local")
-            .appName("Python")
-            .config(conf=SparkConf())
-            .getOrCreate())
+os.environ['HADOOP_HOME'] = 'C:/hadoop'
+os.environ['PATH'] += os.pathsep + 'C:/hadoop/bin'
 
 
 def create_df_example(spark: SparkSession) -> DataFrame:
@@ -21,8 +19,5 @@ def create_df_example(spark: SparkSession) -> DataFrame:
 
 
 spark = init_spark()
-# df = create_df_example(spark)
-
-tripWorker = TripWorker.TripWorker(spark)
-tripWorker.show_df()
-
+df = TripTable(spark)
+df.show(5)
